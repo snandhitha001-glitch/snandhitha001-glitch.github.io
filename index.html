@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snandhitha Sivakumar | Portfolio</title>
+    <title>Nandhitha Sivakumar | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,6 +22,7 @@
             color: var(--text-main);
             line-height: 1.6;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         /* Nav */
@@ -33,18 +34,38 @@
             border-bottom: 1px solid var(--border);
         }
         .nav-content { max-width: 1250px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 40px; align-items: center; }
-        .logo { font-weight: 800; letter-spacing: 2px; color: var(--accent); font-size: 0.85rem; }
+        .logo { font-weight: 800; letter-spacing: 2px; color: var(--accent); font-size: 0.85rem; text-transform: uppercase; }
         .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; margin-left: 30px; font-size: 0.7rem; letter-spacing: 1.5px; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
         /* Hero */
-        #home { min-height: 75vh; display: flex; flex-direction: column; justify-content: center; padding: 0 40px; max-width: 1250px; margin: 0 auto; }
+        #home { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; padding: 0 40px; max-width: 1250px; margin: 0 auto; }
         #role-label { color: var(--accent); font-weight: 800; letter-spacing: 4px; margin-bottom: 20px; font-size: 0.8rem; text-transform: uppercase; height: 24px; }
         h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -3px; margin-bottom: 30px; }
         .hero-sub { font-size: 1.1rem; color: var(--text-dim); max-width: 650px; font-weight: 300; line-height: 1.8; }
 
+        /* Zig-Zag Timeline */
+        #history { padding: 100px 40px; max-width: 1100px; margin: 0 auto; position: relative; }
+        .history-line { 
+            position: absolute; width: 1px; background: var(--border); 
+            top: 150px; bottom: 100px; left: 50%; transform: translateX(-50%); 
+        }
+        .timeline-container { position: relative; width: 100%; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; }
+        .timeline-item { width: 45%; padding: 20px; position: relative; }
+        .timeline-dot { 
+            position: absolute; width: 10px; height: 10px; 
+            background: var(--bg); border: 2px solid var(--accent); 
+            border-radius: 50%; left: 50%; transform: translateX(-50%); z-index: 10;
+        }
+        .left-item { text-align: right; margin-right: auto; }
+        .right-item { text-align: left; margin-left: auto; }
+        .time-date { font-size: 0.6rem; color: var(--accent); font-weight: 800; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .time-label { font-size: 0.5rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
+        .time-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .time-org { font-size: 0.8rem; color: var(--text-dim); }
+
         /* Portfolio */
-        #portfolio { padding: 100px 40px; max-width: 1250px; margin: 0 auto; }
+        #portfolio { padding: 80px 40px; max-width: 1250px; margin: 0 auto; }
         .filter-bar { display: flex; gap: 12px; margin-bottom: 60px; flex-wrap: wrap; }
         .filter-btn { 
             background: transparent; border: 1px solid var(--border); color: var(--text-dim); 
@@ -53,7 +74,6 @@
         }
         .filter-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 
-        /* 3-Column Grid */
         .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; align-items: stretch; }
         .card { 
             background: var(--card-bg); padding: 40px; border: 1px solid var(--border); 
@@ -70,7 +90,6 @@
         .card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 700; color: #fff; }
         .card p { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 30px; flex-grow: 1; font-weight: 400; line-height: 1.7; }
 
-        /* Underline Link */
         .link-btn { 
             text-decoration: none; color: var(--text-main); font-weight: 800; font-size: 0.7rem; 
             letter-spacing: 1.5px; position: relative; width: fit-content; transition: 0.3s;
@@ -79,22 +98,21 @@
         .link-btn:hover { color: var(--accent); }
         .link-btn:hover::after { width: 100%; }
 
-        /* Connection Section */
+        /* Contact */
         #contact { padding: 150px 40px; text-align: center; background: #07090c; border-top: 1px solid var(--border); }
         #contact h2 { font-size: 0.65rem; color: var(--accent); letter-spacing: 6px; margin-bottom: 50px; text-transform: uppercase; font-weight: 800; }
         .social-wrap { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
-        .social-wrap a { 
-            color: var(--text-main); text-decoration: none; 
-            font-size: 1.8rem; font-weight: 800; transition: 0.4s; display: inline-block;
-        }
+        .social-wrap a { color: var(--text-main); text-decoration: none; font-size: 1.5rem; font-weight: 800; transition: 0.4s; display: inline-block; }
         .social-wrap a:hover { color: var(--accent); transform: skewX(-15deg) scale(1.05); }
 
         /* Responsive */
         @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 750px) { 
-            .grid { grid-template-columns: 1fr; } 
-            .social-wrap { gap: 30px; } 
-            .social-wrap a { font-size: 1.4rem; } 
+            .grid { grid-template-columns: 1fr; }
+            .history-line { left: 20px; }
+            .timeline-dot { left: 20px; }
+            .timeline-item { width: 85%; text-align: left !important; margin-left: 50px !important; }
+            .left-item, .right-item { margin-left: 50px; }
         }
     </style>
 </head>
@@ -102,8 +120,9 @@
 
     <nav id="nav">
         <div class="nav-content">
-            <div class="logo">SN.SIVAKUMAR // 001</div>
+            <div class="logo">NANDHITHA SIVAKUMAR</div>
             <div class="nav-links">
+                <a href="#history">HISTORY</a>
                 <a href="#portfolio">WORK</a>
                 <a href="#contact">CONNECT</a>
             </div>
@@ -116,6 +135,60 @@
         <p class="hero-sub">Translating complex data streams into actionable insights across the business lifecycle.</p>
     </section>
 
+    <section id="history">
+        <div class="history-line"></div>
+
+        <div class="timeline-container">
+            <div class="timeline-dot"></div>
+            <div class="timeline-item right-item">
+                <span class="time-label">Experience</span>
+                <span class="time-date">JAN 2025 – MAY 2025</span>
+                <div class="time-title">Data Scientist Internship</div>
+                <div class="time-org">Lloyds Banking Group</div>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-dot"></div>
+            <div class="timeline-item left-item">
+                <span class="time-label">Education</span>
+                <span class="time-date">SEPT 2024 – SEPT 2025</span>
+                <div class="time-title">PG Diploma Engineering (Research)</div>
+                <div class="time-org">University of Bristol</div>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-dot"></div>
+            <div class="timeline-item right-item">
+                <span class="time-label">Experience</span>
+                <span class="time-date">OCT 2024 – JAN 2025</span>
+                <div class="time-title">Data Consultant Internship</div>
+                <div class="time-org">180 Degrees Consulting Bristol</div>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-dot"></div>
+            <div class="timeline-item left-item">
+                <span class="time-label">Experience</span>
+                <span class="time-date">AUG 2022 – JUNE 2024</span>
+                <div class="time-title">Associate Analyst</div>
+                <div class="time-org">Deloitte USI</div>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-dot"></div>
+            <div class="timeline-item right-item">
+                <span class="time-label">Education</span>
+                <span class="time-date">JUNE 2019 – JUNE 2022</span>
+                <div class="time-title">BSc Computer Science</div>
+                <div class="time-org">M.O.P. Vaishnav College for Women</div>
+            </div>
+        </div>
+    </section>
+
     <section id="portfolio">
         <div class="filter-bar">
             <button class="filter-btn active" onclick="filter('all')">ALL PROJECTS</button>
@@ -126,7 +199,7 @@
 
         <div class="grid">
             <div class="card nlp">
-                <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">Dijkstra</span></div>
+                <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">GraphML</span></div>
                 <h3>Graph Semantic Clustering</h3>
                 <p>AI-driven case study on word clustering using sentence co-occurrence and graph-based shortest-path metrics.</p>
                 <a href="https://github.com/snandhitha001-glitch/graph-semantic-clustering-NLP" target="_blank" class="link-btn">VIEW REPOSITORY</a>
@@ -147,7 +220,7 @@
             </div>
 
             <div class="card fin">
-                <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data Modeling</span></div>
+                <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Modeling</span></div>
                 <h3>Financial Health Analytics</h3>
                 <p>Predictive health scoring and customer segmentation in retail banking using optimized dashboard design.</p>
                 <a href="https://github.com/snandhitha001-glitch/customer-financial-health-analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
@@ -176,7 +249,7 @@
             <a href="https://www.linkedin.com/in/nandhitha-sivakumar/" target="_blank">LINKEDIN</a>
             <a href="mailto:snandhitha001@gmail.com">EMAIL</a>
         </div>
-        <p style="margin-top: 100px; font-size: 0.55rem; color: #2d333b; letter-spacing: 5px;">EST. 2026 // SNANDHITHA SIVAKUMAR</p>
+        <p style="margin-top: 100px; font-size: 0.55rem; color: #2d333b; letter-spacing: 5px;">EST. 2026 // NANDHITHA SIVAKUMAR</p>
     </section>
 
     <script>
