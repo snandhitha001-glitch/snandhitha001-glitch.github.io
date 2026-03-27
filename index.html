@@ -3,263 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analytics Portfolio</title>
+    <title>snandhitha001 | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --text-main: #c9d1d9;
-            --text-muted: #8b949e;
-            --accent: #58a6ff;
-            --accent-hover: #1f6feb;
+            --bg: #0b0d11;
+            --card-bg: #14171c;
+            --accent: #4ade80;
+            --text-main: #f0f6fc;
+            --text-dim: #7d8590;
+            --border: rgba(255, 255, 255, 0.08);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background-color: var(--bg);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            scroll-behavior: smooth;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 4rem 0;
+        /* Nav */
+        #nav { 
+            position: fixed; top: 0; width: 100%; 
+            background: rgba(11, 13, 17, 0.95); 
+            backdrop-filter: blur(12px);
+            padding: 22px 0; z-index: 1000; 
+            border-bottom: 1px solid var(--border);
         }
+        .nav-content { max-width: 1250px; margin: 0 auto; display: flex; justify-content: space-between; padding: 0 40px; align-items: center; }
+        .logo { font-weight: 800; letter-spacing: 2px; color: var(--accent); font-size: 0.85rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-weight: 600; margin-left: 30px; font-size: 0.7rem; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
+        /* Hero */
+        #home { min-height: 75vh; display: flex; flex-direction: column; justify-content: center; padding: 0 40px; max-width: 1250px; margin: 0 auto; }
+        #role-label { color: var(--accent); font-weight: 800; letter-spacing: 4px; margin-bottom: 20px; font-size: 0.8rem; text-transform: uppercase; height: 24px; }
+        h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -3px; margin-bottom: 30px; }
+        .hero-sub { font-size: 1.1rem; color: var(--text-dim); max-width: 650px; font-weight: 300; line-height: 1.8; }
+
+        /* Portfolio */
+        #portfolio { padding: 100px 40px; max-width: 1250px; margin: 0 auto; }
+        .filter-bar { display: flex; gap: 12px; margin-bottom: 60px; flex-wrap: wrap; }
+        .filter-btn { 
+            background: transparent; border: 1px solid var(--border); color: var(--text-dim); 
+            padding: 7px 20px; border-radius: 100px; font-family: inherit; font-size: 0.65rem; 
+            font-weight: 700; cursor: pointer; transition: 0.3s; letter-spacing: 1px;
         }
+        .filter-btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
+        /* 3-Column Grid */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; align-items: stretch; }
+        .card { 
+            background: var(--card-bg); padding: 40px; border: 1px solid var(--border); 
+            display: flex; flex-direction: column; min-height: 400px; 
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+        .card.hidden { display: none; }
+        .card:hover { border-color: var(--accent); transform: translateY(-8px); background: #1a1e24; }
 
-        /* Interactive Filters */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag { font-size: 0.55rem; color: var(--text-dim); font-weight: 800; letter-spacing: 1px; text-transform: uppercase; border-right: 1px solid var(--border); padding-right: 8px; }
+        .tag:last-child { border-right: none; }
+
+        .card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 700; color: #fff; }
+        .card p { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 30px; flex-grow: 1; font-weight: 400; line-height: 1.7; }
+
+        /* Underline Link */
+        .link-btn { 
+            text-decoration: none; color: var(--text-main); font-weight: 800; font-size: 0.7rem; 
+            letter-spacing: 1.5px; position: relative; width: fit-content; transition: 0.3s;
         }
+        .link-btn::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 0; background-color: var(--accent); transition: 0.3s; }
+        .link-btn:hover { color: var(--accent); }
+        .link-btn:hover::after { width: 100%; }
 
-        .filter-btn {
-            background-color: transparent;
-            border: 1px solid var(--text-muted);
-            color: var(--text-main);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        /* Connection Section - Refined Size */
+        #contact { padding: 150px 40px; text-align: center; background: #07090c; border-top: 1px solid var(--border); }
+        #contact h2 { font-size: 0.65rem; color: var(--accent); letter-spacing: 6px; margin-bottom: 50px; text-transform: uppercase; font-weight: 800; }
+        .social-wrap { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .social-wrap a { 
+            color: var(--text-main); text-decoration: none; 
+            font-size: 1.8rem; /* Scaled down one size */
+            font-weight: 800; transition: 0.4s; display: inline-block;
         }
+        .social-wrap a:hover { color: var(--accent); transform: skewX(-15deg) scale(1.05); }
 
-        .filter-btn:hover, .filter-btn.active {
-            border-color: var(--accent);
-            color: var(--accent);
-            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
-        }
-
-        /* Project Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .card h3 {
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-            font-size: 1.3rem;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .tag {
-            background-color: #21262d;
-            color: var(--text-main);
-            font-size: 0.8rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-        }
-
-        .links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.9rem;
-            border: 1px solid #30363d;
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-
-        .links a:hover {
-            background-color: #30363d;
-        }
-
-        /* Hide logic for filtering */
-        .hidden {
-            display: none;
+        /* Responsive */
+        @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 750px) { 
+            .grid { grid-template-columns: 1fr; } 
+            .social-wrap { gap: 30px; } 
+            .social-wrap a { font-size: 1.4rem; } 
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Data & Analytics Portfolio</h1>
-        <p class="subtitle">Transforming complex data into strategic insights | Finance • NLP • Health Tech</p>
-    </header>
-
-    <div class="filters">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="finance">Finance & Banking</button>
-        <button class="filter-btn" data-filter="nlp">NLP & AI</button>
-        <button class="filter-btn" data-filter="health">Health Data</button>
-    </div>
-
-    <div class="grid" id="project-grid">
-        <div class="card" data-category="finance">
-            <h3>Customer Financial Health Analytics</h3>
-            <p>Financial health scoring and customer segmentation in retail banking, transforming raw transaction data into actionable financial profiles.</p>
-            <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Power BI</span>
-                <span class="tag">Segmentation</span>
-            </div>
-            <div class="links">
-                <a href="https://github.com/snandhitha001-glitch/customer-financial-health-analytics" target="_blank">View on GitHub →</a>
+    <nav id="nav">
+        <div class="nav-content">
+            <div class="logo">SNANDHITHA // 001</div>
+            <div class="nav-links">
+                <a href="#portfolio">WORK</a>
+                <a href="#contact">CONNECT</a>
             </div>
         </div>
+    </nav>
 
-        <div class="card" data-category="nlp">
-            <h3>AI Workforce Degree Shift Analysis</h3>
-            <p>Data-driven insights into how AI is reshaping workforce demand, qualifications, and hiring trends across various industries.</p>
-            <div class="tags">
-                <span class="tag">Data Insights</span>
-                <span class="tag">EDA</span>
-                <span class="tag">Trends</span>
-            </div>
-            <div class="links">
-                <a href="https://github.com/snandhitha001-glitch/ai-workforce-degree-shift-analysis" target="_blank">View on GitHub →</a>
-            </div>
+    <section id="home">
+        <span id="role-label"></span>
+        <h1>Turning data <br>into <span style="color: var(--accent);">decisions.</span></h1>
+        <p class="hero-sub">Translating complex data streams into actionable insights across the business lifecycle.</p>
+    </section>
+
+    <section id="portfolio">
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filter('all')">ALL PROJECTS</button>
+            <button class="filter-btn" onclick="filter('fin')">FINANCIAL ANALYTICS</button>
+            <button class="filter-btn" onclick="filter('nlp')">NLP & TEXT AI</button>
+            <button class="filter-btn" onclick="filter('strat')">STRATEGY</button>
         </div>
 
-        <div class="card" data-category="finance">
-            <h3>Lloyds Banking Analytics</h3>
-            <p>Comprehensive banking data analysis to uncover operational efficiencies and customer behavior patterns within the Lloyds banking ecosystem.</p>
-            <div class="tags">
-                <span class="tag">Data Analytics</span>
-                <span class="tag">Banking</span>
-                <span class="tag">SQL</span>
+        <div class="grid">
+            <div class="card nlp">
+                <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">Dijkstra</span></div>
+                <h3>Graph Semantic Clustering</h3>
+                <p>AI-driven case study on word clustering using sentence co-occurrence and graph-based shortest-path metrics.</p>
+                <a href="https://github.com/snandhitha001-glitch/graph-semantic-clustering-NLP" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
-            <div class="links">
-                <a href="https://github.com/snandhitha001-glitch/lloyds-banking-analytics" target="_blank">View on GitHub →</a>
-            </div>
-        </div>
 
-        <div class="card" data-category="nlp">
-            <h3>Climate NLP Intelligence</h3>
-            <p>Applying Natural Language Processing to extract intelligence and sentiment from large volumes of climate-related textual data.</p>
-            <div class="tags">
-                <span class="tag">NLP</span>
-                <span class="tag">Sentiment Analysis</span>
-                <span class="tag">Python</span>
+            <div class="card nlp">
+                <div class="tags"><span class="tag">HuggingFace</span><span class="tag">SpaCy</span><span class="tag">NER</span></div>
+                <h3>Climate Intelligence</h3>
+                <p>Extracting actionable insights from sustainability reports using advanced text analytics and transfer learning.</p>
+                <a href="https://github.com/snandhitha001-glitch/climate-NLP-intelligence" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
-            <div class="links">
-                <a href="https://github.com/snandhitha001-glitch/climate-NLP-intelligence" target="_blank">View on GitHub →</a>
-            </div>
-        </div>
 
-        <div class="card" data-category="nlp">
-            <h3>Graph Semantic Clustering NLP</h3>
-            <p>Advanced natural language processing leveraging graph theory to cluster and map semantic relationships across complex documents.</p>
-            <div class="tags">
-                <span class="tag">NLP</span>
-                <span class="tag">Graph Theory</span>
-                <span class="tag">Machine Learning</span>
+            <div class="card fin">
+                <div class="tags"><span class="tag">Scikit-learn</span><span class="tag">Statsmodels</span><span class="tag">SHAP</span></div>
+                <h3>Lloyds Banking Analytics</h3>
+                <p>End-to-end ML pipeline for fraud detection and risk segmentation on retail banking transactions.</p>
+                <a href="https://github.com/snandhitha001-glitch/lloyds-banking-analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
-            <div class="links">
-                <a href="https://github.com/snandhitha001-glitch/graph-semantic-clustering-NLP" target="_blank">View on GitHub →</a>
-            </div>
-        </div>
 
-        <div class="card" data-category="health">
-            <h3>Personalized Glucose Forecasting</h3>
-            <p>Predictive time-series modeling to forecast personalized glucose levels, aiding in proactive health and diabetes management.</p>
-            <div class="tags">
-                <span class="tag">Time-Series</span>
-                <span class="tag">Predictive Modeling</span>
-                <span class="tag">Healthcare</span>
+            <div class="card fin">
+                <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data Modeling</span></div>
+                <h3>Financial Health Analytics</h3>
+                <p>Predictive health scoring and customer segmentation in retail banking using optimized dashboard design.</p>
+                <a href="https://github.com/snandhitha001-glitch/customer-financial-health-analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
-            <div class="links">
-                <a href="https://github.com/snandhitha001-glitch/personalized-glucose-forecasting" target="_blank">View on GitHub →</a>
+
+            <div class="card strat">
+                <div class="tags"><span class="tag">Bayesian Regression</span><span class="tag">Tableau</span><span class="tag">Forecasting</span></div>
+                <h3>AI Workforce Shift</h3>
+                <p>Data-driven insights into how AI is reshaping workforce demand and hiring trends across industries.</p>
+                <a href="https://github.com/snandhitha001-glitch/ai-workforce-degree-shift-analysis" target="_blank" class="link-btn">VIEW REPOSITORY</a>
+            </div>
+
+            <div class="card" style="opacity: 0.4; border-style: dashed;">
+                <div class="tags"><span class="tag">R&D</span></div>
+                <h3>Next Architecture...</h3>
+                <p>Developing new frameworks for automated strategy and predictive intelligence.</p>
+                <span class="link-btn" style="cursor: default;">COMING SOON</span>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section id="contact">
+        <h2>Establish Connection</h2>
+        <div class="social-wrap">
+            <a href="https://github.com/snandhitha001-glitch" target="_blank">GITHUB</a>
+            <a href="#" target="_blank">LINKEDIN</a>
+            <a href="mailto:your-email@example.com">EMAIL</a>
+        </div>
+        <p style="margin-top: 100px; font-size: 0.55rem; color: #2d333b; letter-spacing: 5px;">EST. 2026 // SNANDHITHA001</p>
+    </section>
 
     <script>
-        // Interactive Filtering Logic
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.card');
+        const roles = ["Business Analyst", "Data Analyst", "Data Scientist"];
+        let count = 0, index = 0, currentText = '', letter = '';
+        (function type() {
+            if (count === roles.length) count = 0;
+            currentText = roles[count];
+            letter = currentText.slice(0, ++index);
+            document.getElementById('role-label').textContent = letter;
+            if (letter.length === currentText.length) {
+                setTimeout(() => { index = 0; count++; setTimeout(type, 500); }, 2000);
+            } else { setTimeout(type, 100); }
+        }());
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                btn.classList.add('active');
-
-                const filterValue = btn.getAttribute('data-filter');
-
-                cards.forEach(card => {
-                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-            });
-        });
+        function filter(c) {
+            let cards = document.getElementsByClassName("card");
+            if (c === 'all') c = '';
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].classList.add("hidden");
+                if (cards[i].className.indexOf(c) > -1) cards[i].classList.remove("hidden");
+            }
+            let btns = document.getElementsByClassName("filter-btn");
+            for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
+            event.currentTarget.classList.add("active");
+        }
     </script>
 </body>
 </html>
