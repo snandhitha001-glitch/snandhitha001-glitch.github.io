@@ -44,25 +44,28 @@
         h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -3px; margin-bottom: 30px; }
         .hero-sub { font-size: 1.1rem; color: var(--text-dim); max-width: 650px; font-weight: 300; line-height: 1.8; }
 
-        /* Zig-Zag Timeline */
-        #history { padding: 100px 40px; max-width: 1100px; margin: 0 auto; position: relative; }
-        .history-line { 
-            position: absolute; width: 1px; background: var(--border); 
-            top: 150px; bottom: 100px; left: 50%; transform: translateX(-50%); 
+
+
+        /* About */
+        #about { padding: 100px 40px; max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; border-top: 1px solid var(--border); }
+        .about-left .section-label { font-size: 0.6rem; color: var(--accent); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 24px; display: block; }
+        .about-left h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.2; letter-spacing: -1.5px; margin-bottom: 24px; }
+        .about-left p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.9; font-weight: 400; margin-bottom: 14px; }
+        .about-left p:last-child { margin-bottom: 0; }
+
+        /* Skills */
+        .skills-wrap { display: flex; flex-direction: column; gap: 28px; }
+        .skill-group { }
+        .skill-group-label { font-size: 0.55rem; color: var(--accent); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; display: block; }
+        .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-pill { 
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px;
+            padding: 6px 14px; border: 1px solid var(--border); color: var(--text-dim);
+            background: var(--card-bg); transition: 0.25s;
         }
-        .timeline-container { position: relative; width: 100%; margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center; }
-        .timeline-item { width: 45%; padding: 20px; position: relative; }
-        .timeline-dot { 
-            position: absolute; width: 10px; height: 10px; 
-            background: var(--bg); border: 2px solid var(--accent); 
-            border-radius: 50%; left: 50%; transform: translateX(-50%); z-index: 10;
-        }
-        .left-item { text-align: right; margin-right: auto; }
-        .right-item { text-align: left; margin-left: auto; }
-        .time-date { font-size: 0.6rem; color: var(--accent); font-weight: 800; letter-spacing: 1px; display: block; margin-bottom: 5px; }
-        .time-label { font-size: 0.5rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; display: block; }
-        .time-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-        .time-org { font-size: 0.8rem; color: var(--text-dim); }
+        .skill-pill:hover { border-color: var(--accent); color: var(--accent); background: rgba(74, 222, 128, 0.05); }
+
+        @media (max-width: 900px) { #about { grid-template-columns: 1fr; gap: 50px; } }
 
         /* Portfolio */
         #portfolio { padding: 80px 40px; max-width: 1250px; margin: 0 auto; }
@@ -109,10 +112,7 @@
         @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 750px) { 
             .grid { grid-template-columns: 1fr; }
-            .history-line { left: 20px; }
-            .timeline-dot { left: 20px; }
-            .timeline-item { width: 85%; text-align: left !important; margin-left: 50px !important; }
-            .left-item, .right-item { margin-left: 50px; }
+
         }
     </style>
 </head>
@@ -122,7 +122,7 @@
         <div class="nav-content">
             <div class="logo">NANDHITHA SIVAKUMAR</div>
             <div class="nav-links">
-                <a href="#history">HISTORY</a>
+<a href="#about">ABOUT</a>
                 <a href="#portfolio">WORK</a>
                 <a href="#contact">CONNECT</a>
             </div>
@@ -135,56 +135,55 @@
         <p class="hero-sub">Translating complex data streams into actionable insights across the business lifecycle.</p>
     </section>
 
-    <section id="history">
-        <div class="history-line"></div>
 
-        <div class="timeline-container">
-            <div class="timeline-dot"></div>
-            <div class="timeline-item right-item">
-                <span class="time-label">Experience</span>
-                <span class="time-date">JAN 2025 – MAY 2025</span>
-                <div class="time-title">Data Scientist Internship</div>
-                <div class="time-org">Lloyds Banking Group</div>
-            </div>
+
+    <section id="about">
+        <div class="about-left">
+            <span class="section-label">About</span>
+            <h2>Analyst who speaks both SQL and the boardroom.</h2>
+            <p>I started in enterprise consulting, learned how to make complex systems legible to the people running them, then went deeper — into machine learning, NLP, and statistical modelling at Bristol. Now I build end-to-end analytical work that holds up technically and lands with a non-technical audience.</p>
         </div>
-
-        <div class="timeline-container">
-            <div class="timeline-dot"></div>
-            <div class="timeline-item left-item">
-                <span class="time-label">Education</span>
-                <span class="time-date">SEPT 2024 – SEPT 2025</span>
-                <div class="time-title">PG Diploma Engineering (Research)</div>
-                <div class="time-org">University of Bristol</div>
-            </div>
-        </div>
-
-        <div class="timeline-container">
-            <div class="timeline-dot"></div>
-            <div class="timeline-item right-item">
-                <span class="time-label">Experience</span>
-                <span class="time-date">OCT 2024 – JAN 2025</span>
-                <div class="time-title">Data Consultant Internship</div>
-                <div class="time-org">180 Degrees Consulting Bristol</div>
-            </div>
-        </div>
-
-        <div class="timeline-container">
-            <div class="timeline-dot"></div>
-            <div class="timeline-item left-item">
-                <span class="time-label">Experience</span>
-                <span class="time-date">AUG 2022 – JUNE 2024</span>
-                <div class="time-title">Associate Analyst</div>
-                <div class="time-org">Deloitte USI</div>
-            </div>
-        </div>
-
-        <div class="timeline-container">
-            <div class="timeline-dot"></div>
-            <div class="timeline-item right-item">
-                <span class="time-label">Education</span>
-                <span class="time-date">JUNE 2019 – JUNE 2022</span>
-                <div class="time-title">BSc Computer Science</div>
-                <div class="time-org">M.O.P. Vaishnav College for Women</div>
+        <div class="about-right">
+            <div class="skills-wrap">
+                <div class="skill-group">
+                    <span class="skill-group-label">Analytics & Modelling</span>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Cohort Analysis</span>
+                        <span class="skill-pill">RFM Segmentation</span>
+                        <span class="skill-pill">Retention Modelling</span>
+                        <span class="skill-pill">CLV</span>
+                        <span class="skill-pill">KPI Design</span>
+                        <span class="skill-pill">Funnel Analysis</span>
+                        <span class="skill-pill">K-Means Clustering</span>
+                        <span class="skill-pill">PCA</span>
+                        <span class="skill-pill">Bayesian Forecasting</span>
+                        <span class="skill-pill">Time-Series</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <span class="skill-group-label">Languages & Libraries</span>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">SQL (MySQL)</span>
+                        <span class="skill-pill">Scikit-learn</span>
+                        <span class="skill-pill">HuggingFace</span>
+                        <span class="skill-pill">SpaCy</span>
+                        <span class="skill-pill">SHAP</span>
+                        <span class="skill-pill">NetworkX</span>
+                        <span class="skill-pill">Statsmodels</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <span class="skill-group-label">Visualisation & Platforms</span>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Power BI</span>
+                        <span class="skill-pill">Tableau</span>
+                        <span class="skill-pill">DAX</span>
+                        <span class="skill-pill">Salesforce</span>
+                        <span class="skill-pill">AWS</span>
+                        <span class="skill-pill">GitHub</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -224,6 +223,13 @@
                 <h3>Financial Health Analytics</h3>
                 <p>Predictive health scoring and customer segmentation in retail banking using optimized dashboard design.</p>
                 <a href="https://github.com/snandhitha001-glitch/customer-financial-health-analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
+            </div>
+
+            <div class="card fin strat">
+                <div class="tags"><span class="tag">MySQL</span><span class="tag">CTEs</span><span class="tag">Window Functions</span></div>
+                <h3>Decoding Target — E-Commerce SQL</h3>
+                <p>End-to-end SQL analysis of ~99K orders across four interconnected tables — covering data cleaning, cohort retention, RFM segmentation, and CLV trend modelling on a Brazilian e-commerce marketplace.</p>
+                <a href="https://github.com/snandhitha001-glitch/target_analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
 
             <div class="card strat">
