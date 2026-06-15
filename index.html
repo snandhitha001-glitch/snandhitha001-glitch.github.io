@@ -44,22 +44,39 @@
         h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -3px; margin-bottom: 30px; }
         .hero-sub { font-size: 1.1rem; color: var(--text-dim); max-width: 650px; font-weight: 300; line-height: 1.8; }
 
+        /* Section labels — one size up from 0.6rem → 0.75rem */
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            display: block;
+        }
 
+        /* Skill group labels — one size up from 0.55rem → 0.7rem */
+        .skill-group-label {
+            font-size: 0.7rem;
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: block;
+        }
 
         /* About */
         #about { padding: 100px 40px; max-width: 1250px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; border-top: 1px solid var(--border); }
-        .about-left .section-label { font-size: 0.6rem; color: var(--accent); font-weight: 800; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 24px; display: block; }
         .about-left h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.2; letter-spacing: -1.5px; margin-bottom: 24px; }
         .about-left p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.9; font-weight: 400; margin-bottom: 14px; }
         .about-left p:last-child { margin-bottom: 0; }
 
         /* Skills */
         .skills-wrap { display: flex; flex-direction: column; gap: 28px; }
-        .skill-group { }
-        .skill-group-label { font-size: 0.55rem; color: var(--accent); font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; display: block; }
         .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
         .skill-pill { 
-            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.5px;
+            font-size: 0.65rem; font-weight: 900; letter-spacing: 0.5px;
             padding: 6px 14px; border: 1px solid var(--border); color: var(--text-dim);
             background: var(--card-bg); transition: 0.25s;
         }
@@ -69,7 +86,12 @@
 
         /* Portfolio */
         #portfolio { padding: 80px 40px; max-width: 1250px; margin: 0 auto; }
-        .filter-bar { display: flex; gap: 12px; margin-bottom: 60px; flex-wrap: wrap; }
+
+        /* Portfolio section label row */
+        .section-header { margin-bottom: 60px; }
+        .section-header .section-label { margin-bottom: 32px; }
+
+        .filter-bar { display: flex; gap: 12px; flex-wrap: wrap; }
         .filter-btn { 
             background: transparent; border: 1px solid var(--border); color: var(--text-dim); 
             padding: 7px 20px; border-radius: 100px; font-family: inherit; font-size: 0.65rem; 
@@ -101,6 +123,22 @@
         .link-btn:hover { color: var(--accent); }
         .link-btn:hover::after { width: 100%; }
 
+        /* Certifications */
+        #certifications { padding: 80px 40px; max-width: 1250px; margin: 0 auto; border-top: 1px solid var(--border); }
+        .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 0; }
+        .cert-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 28px 32px; display: flex; flex-direction: column; gap: 10px;
+            transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .cert-card:hover { border-color: var(--accent); transform: translateY(-4px); background: #1a1e24; }
+        .cert-issuer { font-size: 0.6rem; color: var(--accent); font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+        .cert-name { font-size: 0.9rem; font-weight: 700; color: var(--text-main); line-height: 1.4; }
+        .cert-status { font-size: 0.6rem; color: var(--text-dim); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+        @media (max-width: 1100px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 750px) { .cert-grid { grid-template-columns: 1fr; } }
+
         /* Contact */
         #contact { padding: 150px 40px; text-align: center; background: #07090c; border-top: 1px solid var(--border); }
         #contact h2 { font-size: 0.65rem; color: var(--accent); letter-spacing: 6px; margin-bottom: 50px; text-transform: uppercase; font-weight: 800; }
@@ -110,10 +148,7 @@
 
         /* Responsive */
         @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 750px) { 
-            .grid { grid-template-columns: 1fr; }
-
-        }
+        @media (max-width: 750px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -122,8 +157,9 @@
         <div class="nav-content">
             <div class="logo">NANDHITHA SIVAKUMAR</div>
             <div class="nav-links">
-<a href="#about">ABOUT</a>
+                <a href="#about">ABOUT</a>
                 <a href="#portfolio">WORK</a>
+                <a href="#certifications">CREDENTIALS</a>
                 <a href="#contact">CONNECT</a>
             </div>
         </div>
@@ -135,16 +171,16 @@
         <p class="hero-sub">Translating complex data streams into actionable insights across the business lifecycle.</p>
     </section>
 
-
-
     <section id="about">
         <div class="about-left">
             <span class="section-label">About</span>
-            <h2>Analyst who speaks both SQL and the boardroom.</h2>
-            <p>I started in enterprise consulting, learned how to make complex systems legible to the people running them, then went deeper — into machine learning, NLP, and statistical modelling at Bristol. Now I build end-to-end analytical work that holds up technically and lands with a non-technical audience.</p>
+            <h2>The layer between the model and the decision.</h2>
+            <p>My work spans financial risk, customer analytics, e-commerce behavior, and NLP — built end-to-end, from raw data through to dashboards stakeholders can act on. I work across the full stack of an analytics problem — data engineering, SQL, Python modelling, and Power BI dashboards — but the part I care about is the layer between the model and the decision.</p>
+            <p>Every project here was built with a business question first: who are the high-risk customers, which cohorts are churning, where is workforce demand actually shifting. The output is always something a stakeholder can use, not just a notebook that runs.</p>
         </div>
         <div class="about-right">
             <div class="skills-wrap">
+
                 <div class="skill-group">
                     <span class="skill-group-label">Analytics & Modelling</span>
                     <div class="skill-pills">
@@ -158,13 +194,16 @@
                         <span class="skill-pill">PCA</span>
                         <span class="skill-pill">Bayesian Forecasting</span>
                         <span class="skill-pill">Time-Series</span>
+                        <span class="skill-pill">Star Schema</span>
                     </div>
                 </div>
+
                 <div class="skill-group">
                     <span class="skill-group-label">Languages & Libraries</span>
                     <div class="skill-pills">
                         <span class="skill-pill">Python</span>
                         <span class="skill-pill">SQL (MySQL)</span>
+                        <span class="skill-pill">pandas</span>
                         <span class="skill-pill">Scikit-learn</span>
                         <span class="skill-pill">HuggingFace</span>
                         <span class="skill-pill">SpaCy</span>
@@ -173,78 +212,141 @@
                         <span class="skill-pill">Statsmodels</span>
                     </div>
                 </div>
+
                 <div class="skill-group">
                     <span class="skill-group-label">Visualisation & Platforms</span>
                     <div class="skill-pills">
                         <span class="skill-pill">Power BI</span>
                         <span class="skill-pill">Tableau</span>
                         <span class="skill-pill">DAX</span>
+                        <span class="skill-pill">Jupyter</span>
                         <span class="skill-pill">Salesforce</span>
                         <span class="skill-pill">AWS</span>
                         <span class="skill-pill">GitHub</span>
                     </div>
                 </div>
+
+                <div class="skill-group">
+                    <span class="skill-group-label">Soft Skills</span>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Stakeholder Communication</span>
+                        <span class="skill-pill">Data Storytelling</span>
+                        <span class="skill-pill">Problem Framing</span>
+                        <span class="skill-pill">Cross-functional Collaboration</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
     <section id="portfolio">
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filter('all')">ALL PROJECTS</button>
-            <button class="filter-btn" onclick="filter('fin')">FINANCIAL ANALYTICS</button>
-            <button class="filter-btn" onclick="filter('nlp')">NLP & TEXT AI</button>
-            <button class="filter-btn" onclick="filter('strat')">STRATEGY</button>
+        <div class="section-header">
+            <span class="section-label">Work</span>
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filter('all', event)">ALL PROJECTS</button>
+                <button class="filter-btn" onclick="filter('customer', event)">CUSTOMER & REVENUE</button>
+                <button class="filter-btn" onclick="filter('risk', event)">RISK & FRAUD</button>
+                <button class="filter-btn" onclick="filter('language', event)">LANGUAGE & TEXT AI</button>
+                <button class="filter-btn" onclick="filter('workforce', event)">WORKFORCE & MARKET</button>
+            </div>
         </div>
 
         <div class="grid">
-            <div class="card nlp">
-                <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">GraphML</span></div>
-                <h3>Graph Semantic Clustering</h3>
-                <p>AI-driven case study on word clustering using sentence co-occurrence and graph-based shortest-path metrics.</p>
-                <a href="https://github.com/snandhitha001-glitch/graph-semantic-clustering-NLP" target="_blank" class="link-btn">VIEW REPOSITORY</a>
+
+            <div class="card customer">
+                <div class="tags"><span class="tag">MySQL</span><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Star Schema</span></div>
+                <h3>Neobank Transaction Analytics</h3>
+                <p>End-to-end data analytics project spanning data engineering, SQL, Python, and Power BI — modelling neobank transactions with a star schema for cohort, funnel, and KPI analysis.</p>
+                <a href="https://github.com/snandhitha001-glitch/neobank-analytics" class="link-btn">VIEW REPOSITORY</a>
             </div>
 
-            <div class="card nlp">
-                <div class="tags"><span class="tag">HuggingFace</span><span class="tag">SpaCy</span><span class="tag">NER</span></div>
-                <h3>Climate Intelligence</h3>
-                <p>Extracting actionable insights from corporate sustainability reports using advanced text analytics and transfer learning.</p>
-                <a href="https://github.com/snandhitha001-glitch/climate-NLP-intelligence" target="_blank" class="link-btn">VIEW REPOSITORY</a>
-            </div>
-
-            <div class="card fin">
-                <div class="tags"><span class="tag">Scikit-learn</span><span class="tag">Statsmodels</span><span class="tag">SHAP</span></div>
-                <h3>Lloyds Banking Analytics</h3>
-                <p>End-to-end ML pipeline for fraud detection and risk segmentation on retail banking transactions.</p>
-                <a href="https://github.com/snandhitha001-glitch/lloyds-banking-analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
-            </div>
-
-            <div class="card fin">
+            <div class="card customer">
                 <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Modeling</span></div>
                 <h3>Financial Health Analytics</h3>
                 <p>Predictive health scoring and customer segmentation in retail banking using optimized dashboard design.</p>
                 <a href="https://github.com/snandhitha001-glitch/customer-financial-health-analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
 
-            <div class="card fin strat">
+            <div class="card customer">
                 <div class="tags"><span class="tag">MySQL</span><span class="tag">CTEs</span><span class="tag">Window Functions</span></div>
                 <h3>Decoding Target — E-Commerce SQL</h3>
                 <p>End-to-end SQL analysis of ~99K orders across four interconnected tables — covering data cleaning, cohort retention, RFM segmentation, and CLV trend modelling on a Brazilian e-commerce marketplace.</p>
                 <a href="https://github.com/snandhitha001-glitch/target_analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
 
-            <div class="card strat">
+            <div class="card risk">
+                <div class="tags"><span class="tag">Scikit-learn</span><span class="tag">Statsmodels</span><span class="tag">SHAP</span></div>
+                <h3>Lloyds Banking Analytics</h3>
+                <p>End-to-end ML pipeline for fraud detection and risk segmentation on retail banking transactions.</p>
+                <a href="https://github.com/snandhitha001-glitch/lloyds-banking-analytics" target="_blank" class="link-btn">VIEW REPOSITORY</a>
+            </div>
+
+            <div class="card language">
+                <div class="tags"><span class="tag">Python</span><span class="tag">NetworkX</span><span class="tag">GraphML</span></div>
+                <h3>Graph Semantic Clustering</h3>
+                <p>AI-driven case study on word clustering using sentence co-occurrence and graph-based shortest-path metrics.</p>
+                <a href="https://github.com/snandhitha001-glitch/graph-semantic-clustering-NLP" target="_blank" class="link-btn">VIEW REPOSITORY</a>
+            </div>
+
+            <div class="card language">
+                <div class="tags"><span class="tag">HuggingFace</span><span class="tag">SpaCy</span><span class="tag">NER</span></div>
+                <h3>Climate Intelligence</h3>
+                <p>Extracting actionable insights from corporate sustainability reports using advanced text analytics and transfer learning.</p>
+                <a href="https://github.com/snandhitha001-glitch/climate-NLP-intelligence" target="_blank" class="link-btn">VIEW REPOSITORY</a>
+            </div>
+
+            <div class="card workforce">
                 <div class="tags"><span class="tag">Bayesian Regression</span><span class="tag">Tableau</span><span class="tag">Forecasting</span></div>
                 <h3>AI Workforce Shift</h3>
                 <p>Data-driven insights into how AI is reshaping workforce demand and hiring trends across industries.</p>
                 <a href="https://github.com/snandhitha001-glitch/ai-workforce-degree-shift-analysis" target="_blank" class="link-btn">VIEW REPOSITORY</a>
             </div>
 
-            <div class="card" style="opacity: 0.4; border-style: dashed;">
+            <div class="card placeholder" style="opacity: 0.4; border-style: dashed;">
                 <div class="tags"><span class="tag">R&D</span></div>
                 <h3>Next Architecture...</h3>
                 <p>Developing new frameworks for automated strategy and predictive intelligence.</p>
                 <span class="link-btn" style="cursor: default;">COMING SOON</span>
             </div>
+
+        </div>
+    </section>
+
+    <section id="certifications">
+        <span class="section-label">Credentials</span>
+        <div class="cert-grid">
+
+            <div class="cert-card">
+                <span class="cert-issuer">Microsoft</span>
+                <span class="cert-name">PL-300: Power BI Data Analyst</span>
+                <span class="cert-status">Training Completed</span>
+            </div>
+
+            <div class="cert-card">
+                <span class="cert-issuer">Microsoft</span>
+                <span class="cert-name">DP-900: Azure Data Fundamentals</span>
+                <span class="cert-status">Training Completed</span>
+            </div>
+
+            <div class="cert-card">
+                <span class="cert-issuer">AWS Academy</span>
+                <span class="cert-name">AWS Academy Cloud Foundations</span>
+                <span class="cert-status">Completed</span>
+            </div>
+
+            <div class="cert-card">
+                <span class="cert-issuer">Deloitte Australia</span>
+                <span class="cert-name">Data Analytics Virtual Experience</span>
+                <span class="cert-status">Completed</span>
+            </div>
+
+            <div class="cert-card">
+                <span class="cert-issuer">BCG X</span>
+                <span class="cert-name">Introduction to Data for Decision Makers</span>
+                <span class="cert-status">Completed</span>
+            </div>
+
         </div>
     </section>
 
@@ -259,6 +361,7 @@
     </section>
 
     <script>
+        // Typewriter
         const roles = ["Business Analyst", "Data Analyst", "Data Scientist"];
         let count = 0, index = 0, currentText = '', letter = '';
         (function type() {
@@ -271,16 +374,22 @@
             } else { setTimeout(type, 100); }
         }());
 
-        function filter(c) {
-            let cards = document.getElementsByClassName("card");
-            if (c === 'all') c = '';
-            for (let i = 0; i < cards.length; i++) {
-                cards[i].classList.add("hidden");
-                if (cards[i].className.indexOf(c) > -1) cards[i].classList.remove("hidden");
-            }
-            let btns = document.getElementsByClassName("filter-btn");
-            for (let i = 0; i < btns.length; i++) btns[i].classList.remove("active");
-            event.currentTarget.classList.add("active");
+        // Filter
+        function filter(c, e) {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (c === 'all') {
+                    card.classList.remove('hidden');
+                } else if (card.classList.contains('placeholder')) {
+                    card.classList.add('hidden');
+                } else if (card.classList.contains(c)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            e.currentTarget.classList.add('active');
         }
     </script>
 </body>
